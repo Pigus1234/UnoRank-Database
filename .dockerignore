@@ -2,8 +2,12 @@
 .env
 .env.*
 !.env.example
+!.env.testing
 vendor
 node_modules
 .phpunit.cache
+.phpunit.result.cache
+storage/framework/testing/*
+!storage/framework/testing/.gitignore
 storage/logs/*
 bootstrap/cache/*.php

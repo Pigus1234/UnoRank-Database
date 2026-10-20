@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
             Limit::perMinute(30)->by('ip:'.$request->ip()),
             Limit::perMinute(5)->by('login:'.$request->ip().':'.hash('sha256', is_string($request->input('username')) ? $request->input('username') : '')),
         ]);
+        RateLimiter::for('public', fn (Request $request) => Limit::perMinute(120)->by('public:'.$request->ip()));
         RateLimiter::for('api', fn (Request $request) => Limit::perMinute(120)->by((string) $request->user()?->id));
     }
 }
